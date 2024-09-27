@@ -90,10 +90,12 @@ using (StreamWriter escrever = new StreamWriter("Jogos-mega.txt"))
                 Console.WriteLine("Número inválido!");
         }
     }
-}// Solicitar o valor do prêmio
+// Solicitar o valor do prêmio
 
-Console.Write("Informe o valor do prêmio: ");
-if(!decimal.TryParse(Console.ReadLine(), out valorPremio))
-{
-    Console.WriteLine("Valor inválido.");
+    Console.Write("Informe o valor do prêmio: ");
+    if(!decimal.TryParse(Console.ReadLine(), out valorPremio))
+    {
+        Console.WriteLine("Valor inválido.");
+    }
+    Console.Write($"\x0A 75% do prêmio será dividido aos que acertarem às 6 dezenas, equivalente a : {valorPremio * 0.75:F2} \x0A 15% Para quem acertar 5 dezenas, equivalente a : {valorPremio * 0.15:F2} \x0A 10% Para quem acertar 4 dezenas, equivalente a : {valorPremio * 0.10:F2}");
 }
