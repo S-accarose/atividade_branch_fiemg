@@ -23,69 +23,70 @@ using (StreamWriter escrever = new StreamWriter("Jogos-mega.txt"))
 
     bool repetir = true;
 
+do
+{
     Console.Write("Deseja realizar quantos jogos: ");
-    if (int.TryParse(Console.ReadLine(), out int qtdJogoInformada))
-    {
-        do
+        if (int.TryParse(Console.ReadLine(), out int qtdJogoInformada))
         {
-            Console.Write("Informar a quantidade de dezena: ");
-            if (int.TryParse(Console.ReadLine(), out qtdDezenaInformada))
-            {
-                if (qtdDezenaInformada < 6 || qtdDezenaInformada > 15)
-                        //repetir = true;
-                        repetir = true;
-                    else
-                            repetir = false;
-
-                if (repetir == false)
+            
+                Console.Write("Informar a quantidade de dezena: ");
+                if (int.TryParse(Console.ReadLine(), out qtdDezenaInformada))
                 {
-                    Console.WriteLine();
-                    for (int qtdJogo = 1; qtdJogo <= qtdJogoInformada; qtdJogo++)
+                    if (qtdDezenaInformada < 6 || qtdDezenaInformada > 15)
+                            //repetir = true;
+                            repetir = true;
+                        else
+                                repetir = false;
+    
+                    if (repetir == false)
                     {
-                        Console.Write("\x0A" + qtdJogo + "º jogo: ");
-                        HashSet<int> un = new HashSet<int>();
-                        string num = "";
-                        for (qtdDezena = 1; qtdDezena <= qtdDezenaInformada; qtdDezena++)
+                        Console.WriteLine();
+                        for (int qtdJogo = 1; qtdJogo <= qtdJogoInformada; qtdJogo++)
                         {
-                            int rn;
-                            do
+                            Console.Write("\x0A" + qtdJogo + "º jogo: ");
+                            HashSet<int> un = new HashSet<int>();
+                            string num = "";
+                            for (qtdDezena = 1; qtdDezena <= qtdDezenaInformada; qtdDezena++)
                             {
-                                rn = new Random().Next(1, 61);
-                            } while (!un.Add(rn));
-
-                            if (qtdDezena > 1)
-                            {
-                                num += "-";
+                                int rn;
+                                do
+                                {
+                                    rn = new Random().Next(1, 61);
+                                } while (!un.Add(rn));
+    
+                                if (qtdDezena > 1)
+                                {
+                                    num += "-";
+                                }
+                                num += rn.ToString("D2");
                             }
-                            num += rn.ToString("D2");
+                            Console.WriteLine(num);
+                            escrever.WriteLine(num);
                         }
-                        Console.WriteLine(num);
-                        escrever.WriteLine(num);
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Jogos gerados e salvos no arquivo 'jogos-mega-sena.txt'.\n");
+                        Console.ResetColor();
                     }
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Jogos gerados e salvos no arquivo 'jogos-mega-sena.txt'.\n");
-                    Console.ResetColor();
+                    else if(qtdDezenaInformada < 6)
+                    {
+                        Console.WriteLine("Quantidade dezena menor que 6");
+                        repetir = true;
+    
+                    }
+                    else
+                    {
+                        repetir = true;
+                        Console.WriteLine("Número inválido!");
+                    }
                 }
-                else if(qtdDezenaInformada < 6)
-                {
-                    Console.WriteLine("Quantidade dezena menor que 6");
-                    repetir = true;
-
-                }
-                else
-                {
-                    repetir = true;
-                    Console.WriteLine("Número inválido!");
-                }
-            }
-            //while (repetir == true);
-        }while(repetir == true);
-    }
+        }
     else
     {
     Console.WriteLine("Número inválido!");
     }
+}while(repetir == true);
+    
 
         // Solicitar o valor do prêmio
     Console.Write("Informe o valor do prêmio: ");
